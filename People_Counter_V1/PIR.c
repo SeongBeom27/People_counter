@@ -96,26 +96,18 @@ void send_data()
 int main()
 {
 	if(wiringPiSetup() == -1) return 1;
-	int timeflow = 0;
 	pinMode(PIR1,INPUT);
 	pinMode(PIR2,INPUT);
 	while(1)
 	{
-		timeflow++;
 		if(digitalRead(PIR1) == 1 && digitalRead(PIR2) == 1)
 		{
 			counter++;
 			printf("detection\n");
-		}
-		else printf("Not Detected\n");
-		
-		delay(1000);
-		timerflow++;
-		if(timerflow == timer(5))
-		{	
 			send_data(counter);
-			counter = 0;
 		}
+		else printf("Not Detected\n");	
+		delay(1000);
 	}
 	return 0;
 }
