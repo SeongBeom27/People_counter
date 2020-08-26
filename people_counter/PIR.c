@@ -18,6 +18,11 @@ char* timeToString(struct tm *t) {
 	return s;
 }
 
+// In delay 1second loop
+int timer(int minute)			
+{
+	return 60 * minute;
+}
 void curl_test(char* data)
 {
 	CURL *curl;
@@ -101,11 +106,16 @@ int main()
 		{
 			counter++;
 			printf("detection\n");
-			send_data(counter);
 		}
 		else printf("Not Detected\n");
 		
 		delay(1000);
+		timerflow++;
+		if(timerflow == timer(5))
+		{	
+			send_data(counter);
+			counter = 0;
+		}
 	}
 	return 0;
 }
